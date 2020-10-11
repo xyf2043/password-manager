@@ -1,11 +1,21 @@
-# My Personal Project
 
-## A subtitle
+# Password Manager
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+## Overview about the project
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+This project, *password manager*, aims to help record password (with its user name) on 
+website accounts, credit cards, etc. 
+
+This password manager could assist people **who need**:
+- to remember many passwords for their accounts on websites, cards, and so on.
+- to ensure privacy, since the password-record function on website browser is not so safe.
+- convenience, just search for either user name or password in the project list, both of them would
+appear.
+
+## Why I interested in this project?
+
+I create this project because I once faced the trouble with passwords on the website
+accounts. Sometimes I would forget user name, and sometimes I would forget passwords.
+However, using same password for each account would lead to a loss to account security. 
+Therefore, with the password manager, I believe the application would solve these 
+potential problems.
