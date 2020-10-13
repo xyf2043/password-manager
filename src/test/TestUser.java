@@ -1,12 +1,8 @@
-package model;
-
-import org.junit.Before;
+import model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import model.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.Assert.*;
 
 //Design unit test for User in this class
 

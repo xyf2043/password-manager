@@ -1,9 +1,7 @@
-package model;
-
+import model.PasswordEditor;
+import model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

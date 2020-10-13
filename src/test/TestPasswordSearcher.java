@@ -1,13 +1,11 @@
-package model;
-
-
-import static org.junit.jupiter.api.Assertions.*;
-
-
+import model.PasswordSearcher;
+import model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class TestPasswordSearcher {
     PasswordSearcher userlist;
