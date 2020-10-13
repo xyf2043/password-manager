@@ -22,9 +22,7 @@ potential problems.
 
 ## User Stories
 - As a user, I want to insert multiple passwords and user name in my password list.
-- As a user, I want to search my user name in my list and get my password, and vice versa.
+- As a user, I want to search my user name/password in my list and get my password, and vice versa.
 - As a user, I want to select one password and edit my passwords/ user name in my list.
-- As a user, I want to select one password and leave a comment to it 
-(i.e the password is for which website account).
 - As a user, I want to get the whole list of my passwords and user names.
 
