@@ -3,6 +3,8 @@ import model.UserList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUserList {
@@ -21,6 +23,37 @@ public class TestUserList {
     public void testConstructor() {
         assertTrue(userlist1.isEmpty());
         assertTrue(userlist2.isEmpty());
+    }
+
+    @Test
+    public void testIsEmpty(){
+        UserList userList = new UserList();
+        assertTrue(userList.isEmpty());
+    }
+
+
+    @Test
+    public void testIsNotEmpty(){
+        User user = new User("1", "2");
+        userlist1.insertUser(user);
+        assertFalse(userlist1.isEmpty());
+    }
+
+    @Test
+    public void testCountUser(){
+        assertEquals(0,userlist1.countUser());
+        User user = new User("1", "2");
+        userlist2.insertUser(user);
+        userlist2.insertUser(user);
+        assertEquals(2,userlist2.countUser());
+    }
+
+    @Test
+    public void testReturnUser(){
+        assertEquals(null,userlist1.returnUser(0));
+        User user = new User("1", "2");
+        userlist2.insertUser(user);
+        assertTrue(Objects.equals(user,userlist2.returnUser(0)));
     }
 
 

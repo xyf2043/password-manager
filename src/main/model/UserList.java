@@ -33,8 +33,11 @@ public class UserList {
         return false;
     }
 
-    //EFFECTS: return the user at ith index of list
+    //EFFECTS: return the user at ith index of list, null if index exceed the list's size
     public User returnUser(int i) {
+        if (userlist.size() < i || (userlist.size() == 0)) {
+            return null;
+        }
         return userlist.get(i);
     }
 

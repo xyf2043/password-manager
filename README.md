@@ -21,9 +21,10 @@ Therefore, with the password manager, I believe the application would solve thes
 potential problems.
 
 ## User Stories
-- As a user, I want to insert multiple passwords and user name in my password list.
+- As a user, I want to insert multiple passwords and usernames in my password list.
 - As a user, I want to search my username or password in my list if I forget them.
-- As a user, I want to select one password or username and edit my passwords or username in my list.
+- As a user, I want to select one password or username and edit them.
 - As a user, I want to select one password or username and delete them.
 - As a user, I want to get the whole list of my passwords and user names.
+- As a user, I want to clear my whole password and username list.
 
