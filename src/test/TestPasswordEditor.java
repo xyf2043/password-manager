@@ -3,7 +3,7 @@ import model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPasswordEditor {
     PasswordEditor userlist;
@@ -56,6 +56,21 @@ public class TestPasswordEditor {
         userlist.editUser("3","4","2","10");
         User user = new User("4","10");
         assertTrue(userlist.containUser(user));
+    }
+
+    @Test
+    public void testDeleteUser(){
+        for (int i = 0; i < 10; i++) {
+            String password = Integer.toString(i);
+            String username = Integer.toString(i + 1);
+            User user = new User(username, password);
+            userlist.insertUser(user);
+        }
+        User user = new User("2","1");
+        userlist.deleteUser("2","1");
+        assertEquals(9,userlist.countUser());
+        assertFalse(userlist.containUser(user));
+
     }
 
 

@@ -48,6 +48,12 @@ public class UserList {
         }
         return false;
     }
+
+    // MODIFIES: this
+    // EFFECTS: clear the entire userlist
+    public void clearUserList() {
+        userlist.clear();
+    }
 }
 
 

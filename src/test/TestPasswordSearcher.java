@@ -28,30 +28,6 @@ class TestPasswordSearcher {
         assertTrue(userlist.searchUser("1", "1").isEmpty());
     }
 
-    @Test
-    public void testSearchAccurateUserSuccess() {
-        for (int i = 0; i < 10; i++) {
-            String password = Integer.toString(i);
-            String username = Integer.toString(i + 1);
-            User user = new User(username, password);
-            userlist.insertUser(user);
-        }
-        assertTrue(userlist.searchAccurateUser("1", "0"));
-        assertEquals(1,userlist.countUser());
-    }
-
-    @Test
-    public void testSearchAccurateUserFail() {
-        for (int i = 0; i < 10; i++) {
-            String password = Integer.toString(i);
-            String username = Integer.toString(i + 1);
-            User user = new User(username, password);
-            userlist.insertUser(user);
-        }
-        assertFalse(userlist.searchAccurateUser(null, null));
-        assertFalse(userlist.searchAccurateUser("100", "6"));
-        assertFalse(userlist.searchAccurateUser("6", "6"));
-    }
 
     @Test
     public void testSearchUserWithNoPossibleOutcome() {

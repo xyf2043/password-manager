@@ -13,20 +13,6 @@ public class PasswordSearcher extends UserList {
         super();
     }
 
-    //REQUIRES:the user list has no duplicate users
-    //EFFECTS: use password and user name to locate a user accurately.
-
-    public boolean searchAccurateUser(String username, String password) {
-        LinkedList userinfo = new LinkedList<>();
-        for (User user : userlist) {
-            if (Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), password)) {
-                userinfo.add(user);
-                userlist = userinfo;
-                return true;
-            }
-        }
-        return false;
-    }
 
     //REQUIRES:the user list has no duplicate users
     //EFFECTS:use either password or user name to search users, return a list

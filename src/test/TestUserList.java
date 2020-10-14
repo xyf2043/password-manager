@@ -23,6 +23,7 @@ public class TestUserList {
         assertTrue(userlist2.isEmpty());
     }
 
+
     @Test
     public void testInsertOneUser() {
         User user = new User("1", "2");
@@ -68,5 +69,18 @@ public class TestUserList {
         assertTrue(userlist1.containUser(user1));
 
 
+    }
+
+    @Test
+    public void testClearUserList(){
+        for (int i = 0; i < 10; i++) {
+            String password = Integer.toString(i);
+            String username = Integer.toString(i + 1);
+            User user = new User(username, password);
+            userlist1.insertUser(user);
+        }
+        userlist1.clearUserList();
+        assertEquals(0,userlist1.countUser());
+        assertTrue(userlist1.isEmpty());
     }
 }
