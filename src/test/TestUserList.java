@@ -50,10 +50,13 @@ public class TestUserList {
 
     @Test
     public void testReturnUser(){
+        assertEquals(null, userList1.returnUser(5));
         assertEquals(null, userList1.returnUser(0));
         User user = new User("1", "2");
+        User user1 = new User("1", "2");
         userList2.insertUser(user);
         assertTrue(Objects.equals(user, userList2.returnUser(0)));
+        assertFalse(Objects.equals(user1, userList2.returnUser(0)));
     }
 
 

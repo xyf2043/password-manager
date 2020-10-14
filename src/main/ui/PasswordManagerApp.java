@@ -16,6 +16,7 @@ public class PasswordManagerApp {
     private String oldPass;
     private String newPass;
     private String key;
+    private static int MAX_LENGTH = 20;
 
     // Source Reference/Attribute:
     // the interface format of PasswordManagerApp consults
@@ -98,11 +99,15 @@ public class PasswordManagerApp {
         if (userList.containUser(user)) {
             System.out.println("\tthe user has existed in the list, please add a different user!");
             doAdd();
+        } else if (password.length() > MAX_LENGTH || username.length() > MAX_LENGTH) {
+            System.out.println("\tPlease shorten your password or username, max 20 characters");
+            doAdd();
         } else {
             userList.insertUser(user);
             System.out.println("\tUser Add Success!");
         }
     }
+
 
     // MODIFIES: this
     // EFFECTS: conducts an process of delete selected user
@@ -129,16 +134,22 @@ public class PasswordManagerApp {
         username = input.next();
         System.out.print("Enter password, enter null if you forget: ");
         password = input.next();
-        if (Objects.equals(username, "null") && Objects.equals(password, "null")) {
-            System.out.println("\tWe would provide the whole list of your password and username!");
-            printWholeList();
-        } else if (Objects.equals(username, "null") || Objects.equals(password, "null")) {
-            System.out.println("\tHere is your possible password and username. Please Check!");
-            printSearchList();
+        User user = new User(username, password);
+        if (userList.containUser(user)) {
+            if (Objects.equals(username, "null") && Objects.equals(password, "null")) {
+                System.out.println("\tWe would provide the whole list of your password and username!");
+                printWholeList();
+            } else if (Objects.equals(username, "null") || Objects.equals(password, "null")) {
+                System.out.println("\tHere is your possible password and username. Please Check!");
+                printSearchList();
+            } else {
+                System.out.println("\tHere is your password and username. Please Check!");
+                printSearchList();
+            }
         } else {
-            System.out.println("\tHere is your password and username. Please Check!");
-            printSearchList();
+            System.out.println("\tBoth username and password do not exist in list! Stop Search and Return to Menu...");
         }
+
     }
 
 
