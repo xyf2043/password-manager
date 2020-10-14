@@ -8,24 +8,24 @@ import java.util.LinkedList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestPasswordSearcher {
-    PasswordSearcher userlist;
-    LinkedList<User> userlist2;
+    PasswordSearcher userList;
+    LinkedList<User> userList2;
 
     @BeforeEach
     public void runBefore() {
-        userlist = new PasswordSearcher();
-        userlist2 = new LinkedList<>();
+        userList = new PasswordSearcher();
+        userList2 = new LinkedList<>();
     }
 
     @Test
     public void testConstructor() {
-        assertTrue(userlist.isEmpty());
+        assertTrue(userList.isEmpty());
     }
 
 
     @Test
     public void testSearchUserWithEmptySearchList() {
-        assertTrue(userlist.searchUser("1", "1").isEmpty());
+        assertTrue(userList.searchUser("1", "1").isEmpty());
     }
 
 
@@ -35,14 +35,14 @@ class TestPasswordSearcher {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userlist.insertUser(user);
+            userList.insertUser(user);
         }
 
-        assertEquals(10, userlist.countUser());
-        assertTrue(userlist.searchUser("-1", "-1").isEmpty());
+        assertEquals(10, userList.countUser());
+        assertTrue(userList.searchUser("-1", "-1").isEmpty());
 
-        userlist2 = userlist.searchUser(null, null);
-        assertEquals(0, userlist2.size());
+        userList2 = userList.searchUser(null, null);
+        assertEquals(0, userList2.size());
 
     }
 
@@ -52,19 +52,19 @@ class TestPasswordSearcher {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userlist.insertUser(user);
+            userList.insertUser(user);
         }
-        userlist2 = userlist.searchUser("1", "1");
-        assertEquals(2, userlist2.size());
+        userList2 = userList.searchUser("1", "1");
+        assertEquals(2, userList2.size());
 
-        userlist2 = userlist.searchUser("-1", "1");
-        assertEquals(1, userlist2.size());
+        userList2 = userList.searchUser("-1", "1");
+        assertEquals(1, userList2.size());
 
-        userlist2 = userlist.searchUser("3", null);
-        assertEquals(1, userlist2.size());
+        userList2 = userList.searchUser("3", null);
+        assertEquals(1, userList2.size());
 
-        userlist2 = userlist.searchUser("10", "9");
-        assertEquals(1, userlist2.size());
+        userList2 = userList.searchUser("10", "9");
+        assertEquals(1, userList2.size());
 
     }
 
@@ -75,13 +75,13 @@ class TestPasswordSearcher {
             String password = Integer.toString(i);
             String username = Integer.toString(i);
             User user = new User(username, password);
-            userlist.insertUser(user);
+            userList.insertUser(user);
         }
-        userlist2 = userlist.getWholeUserList();
-        assertEquals(3, userlist.countUser());
-        assertEquals(3, userlist2.size());
-        assertEquals("user:[0]; password:[0]", userlist2.get(0));
-        assertEquals("user:[2]; password:[2]", userlist2.get(2));
+        userList2 = userList.getWholeUserList();
+        assertEquals(3, userList.countUser());
+        assertEquals(3, userList2.size());
+        assertEquals("user:[0]; password:[0]", userList2.get(0));
+        assertEquals("user:[2]; password:[2]", userList2.get(2));
     }
 
 

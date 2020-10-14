@@ -7,38 +7,43 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class PasswordManagerApp {
-    private PasswordEditor userlist;
+    private PasswordEditor userList;
     private Scanner input;
     private String username;
     private String password;
-    private String oldname;
-    private String newname;
-    private String oldpass;
-    private String newpass;
+    private String oldName;
+    private String newName;
+    private String oldPass;
+    private String newPass;
     private String key;
 
-    //EFFECTS:run the PasswordManagerApplication
+    // Source Reference/Attribute:
+    // the interface format of PasswordManagerApp consults
+    // the interface format of TellerApp Project.
+
+
+    // EFFECTS:run the PasswordManagerApplication
     public PasswordManagerApp() {
         runManager();
     }
 
-    //MODIFIES:this
-    //EFFECTS:processes user input
+    // MODIFIES:this
+    // EFFECTS:processes user's input
     public void runManager() {
-        boolean keepGoing = true;
-        String command = null;
+        boolean processing = true;
+        String userCommand = null;
 
         initialize();
 
-        while (keepGoing) {
+        while (processing) {
             displayMenu();
-            command = input.next();
-            command = command.toLowerCase();
+            userCommand = input.next();
+            userCommand = userCommand.toLowerCase();
 
-            if (command.equals("q")) {
-                keepGoing = false;
+            if (userCommand.equals("q")) {
+                processing = false;
             } else {
-                processCommand(command);
+                processUserCommand(userCommand);
             }
         }
 
@@ -47,7 +52,7 @@ public class PasswordManagerApp {
 
     // MODIFIES: this
     // EFFECTS: processes user command
-    private void processCommand(String command) {
+    private void processUserCommand(String command) {
         if (command.equals("s")) {
             doSearch();
         } else if (command.equals("e")) {
@@ -67,12 +72,12 @@ public class PasswordManagerApp {
     // EFFECTS: initializes inputs
     private void initialize() {
         input = new Scanner(System.in);
-        userlist = new PasswordEditor();
+        userList = new PasswordEditor();
     }
 
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
-        System.out.println("\nSelect from:");
+        System.out.println("\nPlease Select from:");
         System.out.println("\ts -> search user");
         System.out.println("\ta -> add user");
         System.out.println("\td -> delete user");
@@ -90,11 +95,11 @@ public class PasswordManagerApp {
         password = input.next();
         User user = new User(username, password);
 
-        if (userlist.containUser(user)) {
+        if (userList.containUser(user)) {
             System.out.println("\tthe user has existed in the list, please add a different user!");
             doAdd();
         } else {
-            userlist.insertUser(user);
+            userList.insertUser(user);
             System.out.println("\tUser Add Success!");
         }
     }
@@ -108,10 +113,10 @@ public class PasswordManagerApp {
         password = input.next();
         User user = new User(username, password);
 
-        if (!(userlist.containUser(user))) {
+        if (!(userList.containUser(user))) {
             System.out.println("\tthe user is not in the list, please try again!");
         } else {
-            userlist.deleteUser(username, password);
+            userList.deleteUser(username, password);
             System.out.println("\tUser Delete Success!");
         }
     }
@@ -141,11 +146,11 @@ public class PasswordManagerApp {
     // EFFECTS: conduct a process of editing username and passwords
     private void doEdit() {
         System.out.println("Enter old username, please use search function if you forget: ");
-        oldname = input.next();
+        oldName = input.next();
         System.out.println("Enter old password, please use search function if you forget: ");
-        oldpass = input.next();
-        User user = new User(oldname, oldpass);
-        if (userlist.isEmpty() || !(userlist.containUser(user))) {
+        oldPass = input.next();
+        User user = new User(oldName, oldPass);
+        if (userList.isEmpty() || !(userList.containUser(user))) {
             System.out.println("The List is empty, or User does not exist! Return to Menu... ");
         } else {
             doChangeInfo();
@@ -159,20 +164,20 @@ public class PasswordManagerApp {
         key = input.next();
         if (Objects.equals(key, "u")) {
             System.out.println("Enter new username: ");
-            newname = input.next();
-            userlist.editUsername(oldname, newname, oldpass);
+            newName = input.next();
+            userList.editUsername(oldName, newName, oldPass);
             System.out.println("Edit Success!");
         } else if (Objects.equals(key, "p")) {
             System.out.println("Enter new password: ");
-            newpass = input.next();
-            userlist.editPassword(oldpass, newpass, oldname);
+            newPass = input.next();
+            userList.editPassword(oldPass, newPass, oldName);
             System.out.println("Edit Success!");
         } else if (Objects.equals(key, "both")) {
             System.out.println("Enter new username: ");
-            newname = input.next();
+            newName = input.next();
             System.out.println("Enter new password: ");
-            newpass = input.next();
-            userlist.editUser(oldname, newname, oldpass, newpass);
+            newPass = input.next();
+            userList.editUser(oldName, newName, oldPass, newPass);
             System.out.println("Edit Success!");
         } else {
             System.out.println("command is invalid! ");
@@ -181,13 +186,13 @@ public class PasswordManagerApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: clear the whole userlist
+    // EFFECTS: clear the whole userList
     private void doClear() {
         System.out.println("Are you sure to clear your whole list? ");
         System.out.println("Press ‘1’ to clear, Press '0' to stop clear ");
         key = input.next();
         if (Objects.equals(key, "1")) {
-            userlist.clearUserList();
+            userList.clearUserList();
             System.out.println("clear list success! ");
         } else if (Objects.equals(key, "0")) {
             System.out.println("Stop clear, return to menu... ");
@@ -199,20 +204,20 @@ public class PasswordManagerApp {
 
     // EFFECTS: print each element from searching list
     private void printSearchList() {
-        for (int i = 0; i < userlist.countUser(); i++) {
-            System.out.println(userlist.searchUser(username, password).get(i));
+        for (int i = 0; i < userList.countUser(); i++) {
+            System.out.println(userList.searchUser(username, password).get(i));
         }
-        if (userlist.isEmpty()) {
+        if (userList.isEmpty()) {
             System.out.println("The List is Empty...");
         }
     }
 
     // EFFECTS: print each element from whole list
     private void printWholeList() {
-        for (int i = 0; i < userlist.countUser(); i++) {
-            System.out.println(userlist.getWholeUserList().get(i));
+        for (int i = 0; i < userList.countUser(); i++) {
+            System.out.println(userList.getWholeUserList().get(i));
         }
-        if (userlist.isEmpty()) {
+        if (userList.isEmpty()) {
             System.out.println("The List is Empty...");
         }
     }

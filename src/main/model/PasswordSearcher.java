@@ -1,7 +1,5 @@
 package model;
 
-import ui.PasswordManagerApp;
-
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -19,7 +17,7 @@ public class PasswordSearcher extends UserList {
     // of possible outcomes in ToLine form
     public LinkedList searchUser(String username, String password) {
         LinkedList userinfo = new LinkedList<>();
-        for (User user : userlist) {
+        for (User user : userList) {
             if (Objects.equals(user.getUsername(), username) || Objects.equals(user.getPassword(), password)) {
                 userinfo.add(user.toLine());
             }
@@ -32,7 +30,7 @@ public class PasswordSearcher extends UserList {
     // (if you forget both of them and cannot use search function)
     public LinkedList getWholeUserList() {
         LinkedList userinfo = new LinkedList<>();
-        for (User user : userlist) {
+        for (User user : userList) {
             userinfo.add(user.toLine());
         }
         return userinfo;
