@@ -41,8 +41,8 @@ class TestPasswordSearcher {
         assertEquals(10, userList.countUser());
         assertTrue(userList.searchUser("-1", "-1").isEmpty());
 
-        userList2 = userList.searchUser(null, null);
-        assertEquals(0, userList2.size());
+
+        assertEquals(0, userList.searchUser(null, null).size());
 
     }
 
@@ -54,17 +54,14 @@ class TestPasswordSearcher {
             User user = new User(username, password);
             userList.insertUser(user);
         }
-        userList2 = userList.searchUser("1", "1");
-        assertEquals(2, userList2.size());
 
-        userList2 = userList.searchUser("-1", "1");
-        assertEquals(1, userList2.size());
+        assertEquals(2, userList.searchUser("1", "1").size());
 
-        userList2 = userList.searchUser("3", null);
-        assertEquals(1, userList2.size());
+        assertEquals(1,  userList.searchUser("-1", "1").size());
 
-        userList2 = userList.searchUser("10", "9");
-        assertEquals(1, userList2.size());
+        assertEquals(1, userList.searchUser("3", null).size());
+
+        assertEquals(1, userList.searchUser("10", "9").size());
 
     }
 
