@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 // Represents a reader that reads workroom from JSON data stored in file
-// Citation/Reference: format of JsonReader in WorkShopApp, some methods used from JsonReader directly
+// Citation/Reference: format of JsonReader in WorkShopApp, some methods used from JsonReader
 public class PasswordReader {
 
     private String fileSource;
@@ -42,7 +42,7 @@ public class PasswordReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses userList from JSON object and returns it
+    // EFFECTS: parses userList from JSON object (from Constructor) and returns it
     private PasswordEditor parseUserList(JSONObject jsonObject) {
         PasswordEditor userList = new PasswordEditor();
         addUsers(userList,jsonObject);
@@ -67,5 +67,4 @@ public class PasswordReader {
         User user = new User(username,password);
         userList.insertUser(user);
     }
-
 }

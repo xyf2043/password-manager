@@ -23,7 +23,7 @@ public class PasswordManagerApp {
     private PasswordWriter passwordWriter;
     private PasswordReader passwordReader;
     private static final int MAX_LENGTH = 20;
-    private static final String JSON_STORE = "./data/UserList.json";
+    private static final String JSON_ADDRESS = "./data/UserList.json";
 
     // Source Reference/Attribute:
     // the interface format of PasswordManagerApp consults
@@ -32,8 +32,8 @@ public class PasswordManagerApp {
 
     // EFFECTS:run the PasswordManagerApplication
     public PasswordManagerApp() throws FileNotFoundException {
-        passwordWriter = new PasswordWriter(JSON_STORE);
-        passwordReader = new PasswordReader(JSON_STORE);
+        passwordWriter = new PasswordWriter(JSON_ADDRESS);
+        passwordReader = new PasswordReader(JSON_ADDRESS);
         runManager();
     }
 
@@ -101,7 +101,7 @@ public class PasswordManagerApp {
         System.out.println("\tclear -> clear whole user list");
         System.out.println("\tsave -> save current user list");
         System.out.println("\tload -> load user list from file");
-        System.out.println("\tquit -> quit");
+        System.out.println("\tquit -> quit app");
     }
 
     // MODIFIES: this
@@ -162,7 +162,7 @@ public class PasswordManagerApp {
             System.out.println("\tHere is your password and username. Please Check!");
             printSearchList();
         } else {
-            System.out.println("\tBoth username and password do not exist in list! Stop Search and Return to Menu...");
+            System.out.println("\tUsername or password do not exist in list! Stop Search and Return to Menu...");
         }
     }
 
@@ -233,9 +233,9 @@ public class PasswordManagerApp {
             passwordWriter.open();
             passwordWriter.write(userList);
             passwordWriter.close();
-            System.out.println("Saved Modified userList to " + JSON_STORE);
+            System.out.println("Saved Modified userList to " + JSON_ADDRESS);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            System.out.println("Unable to write to file: " + JSON_ADDRESS);
         }
     }
 
@@ -244,9 +244,9 @@ public class PasswordManagerApp {
     private void loadUserList() {
         try {
             userList = passwordReader.read();
-            System.out.println("Load userList from " + JSON_STORE);
+            System.out.println("Load userList from " + JSON_ADDRESS);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            System.out.println("Unable to read from file: " + JSON_ADDRESS);
         }
     }
 
@@ -275,7 +275,7 @@ public class PasswordManagerApp {
         }
     }
 
-    // EFFECTS: remind user to load their userList before app starts
+    // EFFECTS: remind user to load their userList when app starts
     private void beforeStart() {
         System.out.println("Load Your password and username from saved file? Press y to load, or pressing n to skip:");
         key = input.next();

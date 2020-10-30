@@ -40,8 +40,6 @@ class TestPasswordSearcher {
 
         assertEquals(10, userList.countUser());
         assertTrue(userList.searchUser("-1", "-1").isEmpty());
-
-
         assertEquals(0, userList.searchUser(null, null).size());
 
     }

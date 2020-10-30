@@ -1,5 +1,6 @@
 import model.UserList;
 import org.junit.jupiter.api.Test;
+import persistence.PasswordReader;
 
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ public class TestPasswordReader extends JsonTest {
 
     @Test
     void testReaderNonExistentFile() {
-        persistence.PasswordReader reader = new persistence.PasswordReader("./data/7777.json");
+        PasswordReader reader = new PasswordReader("./data/7777.json");
         try {
             UserList userList = reader.read();
             fail("IOException expected");
@@ -22,7 +23,7 @@ public class TestPasswordReader extends JsonTest {
 
     @Test
     void testReaderEmptyUserList() {
-        persistence.PasswordReader reader = new persistence.PasswordReader("./data/testReaderEmptyUserList.json");
+        PasswordReader reader = new PasswordReader("./data/testReaderEmptyUserList.json");
         try {
             UserList userList = reader.read();
             assertEquals(0, userList.countUser());
@@ -33,9 +34,9 @@ public class TestPasswordReader extends JsonTest {
 
     @Test
     void testReaderNormalUserList() {
-        persistence.PasswordReader reader = new persistence.PasswordReader("./data/testReaderGeneralUserList.json");
+        PasswordReader reader = new PasswordReader("./data/testReaderGeneralUserList.json");
         try {
-            UserList userList = new UserList();
+            UserList userList;
             userList = reader.read();
             assertEquals(2, userList.countUser());
             checkUser("678", "999", userList.returnUser(0));

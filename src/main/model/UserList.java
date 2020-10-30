@@ -61,13 +61,14 @@ public class UserList {
         userList.clear();
     }
 
+    // EFFECTS: returns userList as a JSON array
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("userList", userToJson());
         return json;
     }
 
-    // EFFECTS: returns userList as a JSON array
+    // EFFECTS: transform each user in userList to JSON Object, add them to JSON Array
     private JSONArray userToJson() {
         JSONArray jsonArray = new JSONArray();
 

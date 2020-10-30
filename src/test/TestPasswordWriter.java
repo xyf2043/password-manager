@@ -22,7 +22,7 @@ public class TestPasswordWriter extends JsonTest {
     @Test
     void testWriterInvalidFile() {
         try {
-            PasswordWriter writer = new PasswordWriter("./data/my\0illegal:fileName.json");
+            PasswordWriter writer = new PasswordWriter("./data\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
         } catch (IOException e) {
@@ -65,6 +65,7 @@ public class TestPasswordWriter extends JsonTest {
             assertEquals(2, userList.countUser());
             assertEquals("678",userList.returnUser(0).getUsername());
             assertEquals("999",userList.returnUser(0).getPassword());
+            checkUser("6788","9995",userList.returnUser(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // Represents a writer that writes JSON representation of users to file
-// Citation/Reference: format of JsonWriter in WorkShopApp, some methods used from JsonWriter directly
+// Citation/Reference: format of JsonWriter in WorkShopApp, some methods used from JsonWriter
 
 public class PasswordWriter {
     private static final int TAB = 4;
@@ -31,7 +31,7 @@ public class PasswordWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of users to file
+    // EFFECTS: writes JSON representation of userList (with users) to file
     public void write(UserList userList) {
         JSONObject json = userList.toJson();
         saveToFile(json.toString(TAB));

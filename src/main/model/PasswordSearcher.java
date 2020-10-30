@@ -12,8 +12,8 @@ public class PasswordSearcher extends UserList {
     }
 
 
-    //REQUIRES:the user list has no duplicate users
-    //EFFECTS:use either password or user name to search users, return a list
+    // REQUIRES:the user list has no duplicate users
+    // EFFECTS:use either password or user name to search users, return a list
     // of possible outcomes in ToLine form
     public LinkedList searchUser(String username, String password) {
         LinkedList userinfo = new LinkedList<>();
