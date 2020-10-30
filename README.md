@@ -29,4 +29,8 @@ With the password manager, I believe the application would solve these potential
 - As a user, I want to select one password or username and delete them.
 - As a user, I want to get the whole list of my passwords and user names.
 - As a user, I want to clear my whole password and username list.
+- As a user, I want to save my password and username list.
+- As a user, I want to load my password and username list.
+- As a user, I want to save my password list before quit app.
+- As a user, I want to load my password list when app starts.
 

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -57,6 +60,25 @@ public class UserList {
     public void clearUserList() {
         userList.clear();
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("userList", userToJson());
+        return json;
+    }
+
+    // EFFECTS: returns userList as a JSON array
+    private JSONArray userToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (User user : userList) {
+            jsonArray.put(user.toJson());
+        }
+
+        return jsonArray;
+    }
+
+
 }
 
 

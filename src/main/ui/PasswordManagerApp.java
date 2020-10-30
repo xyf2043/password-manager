@@ -2,7 +2,11 @@ package ui;
 
 import model.PasswordEditor;
 import model.User;
+import persistence.PasswordReader;
+import persistence.PasswordWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -16,7 +20,10 @@ public class PasswordManagerApp {
     private String oldPass;
     private String newPass;
     private String key;
+    private PasswordWriter passwordWriter;
+    private PasswordReader passwordReader;
     private static final int MAX_LENGTH = 20;
+    private static final String JSON_STORE = "./data/UserList.json";
 
     // Source Reference/Attribute:
     // the interface format of PasswordManagerApp consults
@@ -24,7 +31,9 @@ public class PasswordManagerApp {
 
 
     // EFFECTS:run the PasswordManagerApplication
-    public PasswordManagerApp() {
+    public PasswordManagerApp() throws FileNotFoundException {
+        passwordWriter = new PasswordWriter(JSON_STORE);
+        passwordReader = new PasswordReader(JSON_STORE);
         runManager();
     }
 
@@ -35,13 +44,15 @@ public class PasswordManagerApp {
         String userCommand = null;
 
         initialize();
+        beforeStart();
 
         while (processing) {
             displayMenu();
             userCommand = input.next();
             userCommand = userCommand.toLowerCase();
 
-            if (userCommand.equals("q")) {
+            if (userCommand.equals("quit")) {
+                beforeQuit();
                 processing = false;
             } else {
                 processUserCommand(userCommand);
@@ -54,16 +65,20 @@ public class PasswordManagerApp {
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processUserCommand(String command) {
-        if (command.equals("s")) {
+        if (command.equals("search")) {
             doSearch();
-        } else if (command.equals("e")) {
+        } else if (command.equals("edit")) {
             doEdit();
-        } else if (command.equals("a")) {
+        } else if (command.equals("add")) {
             doAdd();
-        } else if (command.equals("d")) {
+        } else if (command.equals("delete")) {
             doDelete();
-        } else if (command.equals("c")) {
+        } else if (command.equals("clear")) {
             doClear();
+        } else if (command.equals("save")) {
+            saveUserList();
+        } else if (command.equals("load")) {
+            loadUserList();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -79,12 +94,14 @@ public class PasswordManagerApp {
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nPlease Select from:");
-        System.out.println("\ts -> search user");
-        System.out.println("\ta -> add user");
-        System.out.println("\td -> delete user");
-        System.out.println("\te -> edit user");
-        System.out.println("\tc -> clear whole user list");
-        System.out.println("\tq -> quit");
+        System.out.println("\tsearch -> search user");
+        System.out.println("\tadd -> add user");
+        System.out.println("\tdelete -> delete user");
+        System.out.println("\tedit -> edit user");
+        System.out.println("\tclear -> clear whole user list");
+        System.out.println("\tsave -> save current user list");
+        System.out.println("\tload -> load user list from file");
+        System.out.println("\tquit -> quit");
     }
 
     // MODIFIES: this
@@ -210,6 +227,29 @@ public class PasswordManagerApp {
 
     }
 
+    // EFFECTS: saves the (modified) userList to file
+    private void saveUserList() {
+        try {
+            passwordWriter.open();
+            passwordWriter.write(userList);
+            passwordWriter.close();
+            System.out.println("Saved Modified userList to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads userList from file
+    private void loadUserList() {
+        try {
+            userList = passwordReader.read();
+            System.out.println("Load userList from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
     // EFFECTS: print each element from searching list
     private void printSearchList() {
         for (int i = 0; i < userList.countUser(); i++) {
@@ -217,6 +257,36 @@ public class PasswordManagerApp {
         }
         if (userList.isEmpty()) {
             System.out.println("The List is Empty...");
+        }
+    }
+
+    // EFFECTS: provide user to save their password and username before quitting app
+    private void beforeQuit() {
+        System.out.println("Save Your file before leave? Press y to save, or pressing n to skip and quit app: ");
+        key = input.next();
+        if (Objects.equals(key, "y")) {
+            saveUserList();
+            System.out.println("UserList is saved!");
+        } else if ((Objects.equals(key, "n"))) {
+            System.out.println("The app will be terminated...");
+        } else {
+            System.out.println("Selection invalid! Please select again!");
+            beforeQuit();
+        }
+    }
+
+    // EFFECTS: remind user to load their userList before app starts
+    private void beforeStart() {
+        System.out.println("Load Your password and username from saved file? Press y to load, or pressing n to skip:");
+        key = input.next();
+        if (Objects.equals(key, "y")) {
+            loadUserList();
+            System.out.println("UserList is loaded!");
+        } else if ((Objects.equals(key, "n"))) {
+            System.out.println("The app will start soon");
+        } else {
+            System.out.println("Selection invalid! Please select again!");
+            beforeStart();
         }
     }
 

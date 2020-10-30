@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // Represent a user
 public class User {
       // a user has username and password
@@ -24,4 +26,13 @@ public class User {
     public String toLine() {
         return ("user:" + "[" + username + "]" + "; " + "password:" + "[" + password + "]");
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("username", username);
+        json.put("password", password);
+        return json;
+    }
+
+
 }
