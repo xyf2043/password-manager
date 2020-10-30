@@ -18,28 +18,28 @@ public class PasswordReader {
 
     private String fileSource;
 
-    // EFFECTS: constructs reader to read from fileSource file
-    public PasswordReader(String fileSource) {
-        this.fileSource = fileSource;
+    // EFFECTS: constructs reader to read from fileAddress file
+    public PasswordReader(String fileAddress) {
+        this.fileSource = fileAddress;
     }
 
     // EFFECTS: reads users from file and returns it;
     // throws IOException if an error occurs reading data from file
     public PasswordEditor read() throws IOException {
-        String jsonData = readFile(fileSource);
-        JSONObject jsonObject = new JSONObject(jsonData);
+        String jsonUserData = readFile(fileSource);
+        JSONObject jsonObject = new JSONObject(jsonUserData);
         return parseUserList(jsonObject);
     }
 
     // EFFECTS: reads fileSource file as string and returns it
     private String readFile(String source) throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
+        StringBuilder jsonContentBuilder = new StringBuilder();
 
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
-            stream.forEach(s -> contentBuilder.append(s));
+            stream.forEach(s -> jsonContentBuilder.append(s));
         }
 
-        return contentBuilder.toString();
+        return jsonContentBuilder.toString();
     }
 
     // EFFECTS: parses userList from JSON object (from Constructor) and returns it

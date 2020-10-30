@@ -19,8 +19,8 @@ public class PasswordWriter {
     private String destination;
 
     // EFFECTS: constructs writer to write to destination file
-    public PasswordWriter(String destination) {
-        this.destination = destination;
+    public PasswordWriter(String addressDestination) {
+        this.destination = addressDestination;
     }
 
     // MODIFIES: this
