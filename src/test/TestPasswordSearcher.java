@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestPasswordSearcher {
     PasswordSearcher userList;
-    LinkedList<User> userList2;
+    LinkedList<String> userList2;
 
     @BeforeEach
     public void runBefore() {
         userList = new PasswordSearcher();
-        userList2 = new LinkedList<>();
+        userList2 = new LinkedList<String>();
     }
 
     @Test

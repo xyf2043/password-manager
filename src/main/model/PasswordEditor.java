@@ -5,6 +5,8 @@ import java.util.Objects;
 
 // edit user's password and username from search result
 public class PasswordEditor extends PasswordSearcher {
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;
 
     // EFFECTS: Initialize an empty list to keep changed password and user name
     public PasswordEditor() {

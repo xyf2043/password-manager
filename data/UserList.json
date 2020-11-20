@@ -1,14 +1,4 @@
-{"userList": [
-    {
-        "password": "333",
-        "username": "sam"
-    },
-    {
-        "password": "33",
-        "username": "sam"
-    },
-    {
-        "password": "111",
-        "username": "sam"
-    }
-]}
+{"userList": [{
+    "password": "",
+    "username": ""
+}]}
