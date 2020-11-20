@@ -155,8 +155,19 @@ public class PasswordManagerApp extends JFrame {
         firstmenu.setLayout(null);
         firstmenu.setVisible(true);
         firstmenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loadOrSkip();
         clickLoad();
         afterClickSkip();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: construct a panel for firstmenu
+    private void loadOrSkip() {
+        JPanel panel = new JPanel();
+        panel.setBounds(50, 52, 200, 30);
+        JLabel label = new JLabel("Load saved file or Skip?");
+        panel.add(label);
+        firstmenu.add(panel);
     }
 
 
@@ -166,11 +177,10 @@ public class PasswordManagerApp extends JFrame {
         JButton b = new JButton("Load");
         b.setBounds(50, 150, 80, 30);
         b.addActionListener(e -> {
-            firstmenu.setVisible(false);
-            firstmenu.dispose();
-            playRemindSound("windows_xp_notify.wav");
-            loadPanel();
-        }
+                    firstmenu.setVisible(false);
+                    firstmenu.dispose();
+                    loadPanel();
+                }
         );
         firstmenu.add(b);
     }
@@ -206,6 +216,7 @@ public class PasswordManagerApp extends JFrame {
         afterClickClear();
         afterClickDelete();
         afterClickQuit();
+        afterClickUserManual();
     }
 
     // MODIFIES: this
@@ -805,6 +816,7 @@ public class PasswordManagerApp extends JFrame {
             mainmenu.setVisible(false);
             mainmenu.dispose();
             setFrame2();
+            saveOrLeave();
             playRemindSound("windows_xp_shutdown.wav");
             decideSave();
             decideLeave();
@@ -856,6 +868,98 @@ public class PasswordManagerApp extends JFrame {
             frame2.dispatchEvent(new WindowEvent(frame2, WindowEvent.WINDOW_CLOSING));
         });
         frame2.add(b);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: construct a panel for Leave option
+    private void saveOrLeave() {
+        JPanel panel = new JPanel();
+        panel.setBounds(70, 52, 250, 30);
+        JLabel label = new JLabel("Save current file or Leave?");
+        panel.add(label);
+        frame2.add(panel);
+    }
+
+
+    // EFFECTS: construct a user manual
+    private void afterClickUserManual() {
+        JButton b = new JButton("User Manual");
+        b.setBounds(20, 150, 180, 60);
+        b.addActionListener(e -> {
+            mainmenu.setVisible(false);
+            mainmenu.dispose();
+            setFrame2();
+            frame2.setTitle("Manual");
+            addManualPanels();
+
+        });
+        mainmenu.add(b);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: a helper to add manual panels in user manual
+    private void addManualPanels() {
+        JPanel panel = new JPanel();
+        panel.setBounds(50, 52, 300, 30);
+        JLabel label = new JLabel("Save -> Save current userList");
+        panel.add(label);
+        frame2.add(panel);
+        JPanel panel2 = new JPanel();
+        panel2.setBounds(50, 82, 300, 30);
+        JLabel label2 = new JLabel("Add -> Add user to userList");
+        panel2.add(label2);
+        frame2.add(panel2);
+        JPanel panel3 = new JPanel();
+        panel3.setBounds(50, 112, 300, 30);
+        JLabel label3 = new JLabel("Search -> Search users from userList");
+        panel3.add(label3);
+        frame2.add(panel3);
+        JPanel panel4 = new JPanel();
+        panel4.setBounds(50, 142, 300, 30);
+        JLabel label4 = new JLabel("Edit -> Edit a user from userList");
+        panel4.add(label4);
+        frame2.add(panel4);
+        addMorePanels();
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: a helper to add more manual panels
+    private void addMorePanels() {
+        JPanel panel5 = new JPanel();
+        panel5.setBounds(50, 172, 300, 30);
+        JLabel label5 = new JLabel("Load -> Load userList from the saved file");
+        panel5.add(label5);
+        frame2.add(panel5);
+        JPanel panel6 = new JPanel();
+        panel6.setBounds(50, 202, 300, 30);
+        JLabel label6 = new JLabel("Clear -> clear all users from userList");
+        panel6.add(label6);
+        frame2.add(panel6);
+        JPanel panel7 = new JPanel();
+        panel7.setBounds(50, 232, 300, 30);
+        JLabel label7 = new JLabel("Delete -> delete a selected user from userList");
+        panel7.add(label7);
+        frame2.add(panel7);
+        JPanel panel8 = new JPanel();
+        panel8.setBounds(50, 262, 300, 30);
+        JLabel label8 = new JLabel("Quit -> quit app");
+        panel8.add(label8);
+        frame2.add(panel8);
+        addReturnButton();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: a helper to return to the main menu
+    private void addReturnButton() {
+        JButton c = new JButton("OK");
+        frame2.add(c);
+        c.setBounds(150, 300, 80, 30);
+        c.addActionListener(e -> {
+            frame2.setVisible(false);
+            frame2.dispose();
+            goToMainMenu();
+        });
     }
 
 }
