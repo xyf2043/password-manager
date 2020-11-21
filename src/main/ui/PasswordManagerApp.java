@@ -55,6 +55,7 @@ public class PasswordManagerApp extends JFrame {
         startWithLoad();
     }
 
+    // MODIFIES: this
     // EFFECTS: saves the (modified) userList to file
     private void saveUserList() {
         try {
@@ -138,6 +139,7 @@ public class PasswordManagerApp extends JFrame {
         frame4.add(p);
     }
 
+    // MODIFIES: this
     // EFFECTS: set/reset Frame4 to display the search list result
     private void setFrame4() {
         frame4 = new JFrame("Search Result");
@@ -147,7 +149,8 @@ public class PasswordManagerApp extends JFrame {
         frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    // EFFECTS: an helper to construct the first load menu
+    // MODIFIES: this
+    // EFFECTS: an helper to construct the first load reminder menu
     public void startWithLoad() {
         playRemindSound("windows_7_startup.wav");
         firstmenu = new JFrame("Password Manager");
@@ -172,7 +175,7 @@ public class PasswordManagerApp extends JFrame {
 
 
     // MODIFIES: this
-    // EFFECTS: an helper to remind user that load is successful.
+    // EFFECTS: an helper to remind user that load is successful
     private void clickLoad() {
         JButton b = new JButton("Load");
         b.setBounds(50, 150, 80, 30);
@@ -186,7 +189,7 @@ public class PasswordManagerApp extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: go to the main menu
+    // EFFECTS: go to the main menu when clicking 'Skip'
     private void afterClickSkip() {
         JButton c = new JButton("Skip");
         c.setBounds(170, 150, 80, 30);
@@ -198,7 +201,6 @@ public class PasswordManagerApp extends JFrame {
         });
         firstmenu.add(c);
     }
-
 
     // EFFECTS: return to main menu
     private void goToMainMenu() {
@@ -378,7 +380,8 @@ public class PasswordManagerApp extends JFrame {
         mainmenu.add(c);
     }
 
-    // EFFECTS: a helper that constructs 'username' and 'password' panel beside text
+    // MODIFIES: this
+    // EFFECTS: a helper that constructs 'username' and 'password' TextField
     private void twoPanelForSearch() {
         addNameAndPassword();
         JPanel title = new JPanel();
@@ -394,6 +397,8 @@ public class PasswordManagerApp extends JFrame {
         searchAndDisplay();
     }
 
+    // MODIFIES: this
+    // EFFECTS: Construct two TextField to enter username and password
     private void addNameAndPassword() {
         JPanel panel = new JPanel();
         panel.setBounds(100, 52, 70, 30);
@@ -436,6 +441,7 @@ public class PasswordManagerApp extends JFrame {
         });
     }
 
+    // MODIFIES: this
     // EFFECTS: remind user the current user does not exist
     private void remindNonExistUser() {
         JFrame frame = new JFrame("Warning");
@@ -452,9 +458,9 @@ public class PasswordManagerApp extends JFrame {
         frame.add(c);
         c.setBounds(150, 300, 80, 30);
         c.addActionListener(e -> {
-            goToMainMenu();
             frame.setVisible(false);
             frame.dispose();
+            goToMainMenu();
         });
     }
 
@@ -518,7 +524,7 @@ public class PasswordManagerApp extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: an helper for users when they click Edit
+    // EFFECTS: an helper for main menu when users click 'Edit' button
     public void afterClickEdit() {
         JButton c = new JButton("Edit");
         c.setBounds(SCREEN_WIDTH / 2, 110, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -532,7 +538,7 @@ public class PasswordManagerApp extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: display the edit menu
+    // EFFECTS: display the 'edit' menu
     private void panelForEdit() {
         JPanel panel = new JPanel();
         panel.setBounds(80, 52, 90, 30);
@@ -604,7 +610,7 @@ public class PasswordManagerApp extends JFrame {
 
 
     // MODIFIES: this
-    // EFFECTS: set/reset frame 3 to to display 'Edit user' frame
+    // EFFECTS: set/reset frame3 to to display 'Edit user' frame
     private void setFrame3() {
         tf = new JTextField();
         tf.setBounds(175, 52, 150, 30);
@@ -637,6 +643,7 @@ public class PasswordManagerApp extends JFrame {
         });
     }
 
+    // MODIFIES: this
     // EFFECTS: indicate whether the user has successfully load or not
     private void loadPanel() {
         loadUserList();
@@ -749,7 +756,7 @@ public class PasswordManagerApp extends JFrame {
 
 
     // MODIFIES: this
-    // EFFECT: a helper for clear function to add 'Yes' 'No' buttons
+    // EFFECT: a helper for clear function to add 'Yes'(Clear) 'No'(Not Clear) buttons
     private void addButtonForClear() {
         JButton c = new JButton("No");
         c.setBounds(50, 150, 80, 30);
@@ -864,7 +871,7 @@ public class PasswordManagerApp extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: terminate the program
+    // EFFECTS: terminate the program directly
     private void decideLeave() {
         JButton b = new JButton("Leave");
         b.setBounds(250, 150, 80, 30);
@@ -875,7 +882,7 @@ public class PasswordManagerApp extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: construct a panel for Leave option
+    // EFFECTS: construct a panel with 'Save' and 'Leave' option
     private void saveOrLeave() {
         JPanel panel = new JPanel();
         panel.setBounds(70, 52, 250, 30);
@@ -885,6 +892,7 @@ public class PasswordManagerApp extends JFrame {
     }
 
 
+    // MODIFIES: this
     // EFFECTS: construct a user manual to provide instructions
     private void afterClickUserManual() {
         JButton b = new JButton("User Manual");
@@ -953,7 +961,7 @@ public class PasswordManagerApp extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: a helper to return to the main menu
+    // EFFECTS: a helper to create JFrame to return to the main menu
     private void addReturnButton() {
         JButton c = new JButton("OK");
         frame2.add(c);
