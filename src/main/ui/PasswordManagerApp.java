@@ -97,9 +97,9 @@ public class PasswordManagerApp extends JFrame {
             remindEmptyList();
         }
         b.addActionListener(e -> {
-            goToMainMenu();
             frame4.setVisible(false);
             frame4.dispose();
+            goToMainMenu();
         });
     }
 
@@ -122,9 +122,9 @@ public class PasswordManagerApp extends JFrame {
             remindEmptyList();
         }
         b.addActionListener(e -> {
-            goToMainMenu();
             frame4.setVisible(false);
             frame4.dispose();
+            goToMainMenu();
         });
     }
 
@@ -191,10 +191,10 @@ public class PasswordManagerApp extends JFrame {
         JButton c = new JButton("Skip");
         c.setBounds(170, 150, 80, 30);
         c.addActionListener(e -> {
-            userList = new PasswordEditor();
-            goToMainMenu();
             firstmenu.setVisible(false);
             firstmenu.dispose();
+            userList = new PasswordEditor();
+            goToMainMenu();
         });
         firstmenu.add(c);
     }
@@ -303,9 +303,9 @@ public class PasswordManagerApp extends JFrame {
         frame.add(c);
         c.setBounds(150, 300, 80, 30);
         c.addActionListener(e -> {
-            goToMainMenu();
             frame.setVisible(false);
             frame.dispose();
+            goToMainMenu();
         });
     }
 
@@ -326,9 +326,9 @@ public class PasswordManagerApp extends JFrame {
         frame.add(c);
         c.setBounds(150, 300, 80, 30);
         c.addActionListener(e -> {
-            goToMainMenu();
             frame.setVisible(false);
             frame.dispose();
+            goToMainMenu();
         });
     }
 
@@ -349,9 +349,9 @@ public class PasswordManagerApp extends JFrame {
         frame.add(c);
         c.setBounds(150, 300, 80, 30);
         c.addActionListener(e -> {
-            goToMainMenu();
             frame.setVisible(false);
             frame.dispose();
+            goToMainMenu();
         });
     }
 
@@ -654,9 +654,9 @@ public class PasswordManagerApp extends JFrame {
         frame.add(c);
         c.setBounds(300, 300, 80, 30);
         c.addActionListener(e -> {
-            goToMainMenu();
             frame.setVisible(false);
             frame.dispose();
+            goToMainMenu();
         });
     }
 
@@ -666,6 +666,8 @@ public class PasswordManagerApp extends JFrame {
         JButton b = new JButton("Load");
         b.setBounds(SCREEN_WIDTH / 2, 140, BUTTON_WIDTH, BUTTON_HEIGHT);
         b.addActionListener(e -> {
+            mainmenu.setVisible(false);
+            mainmenu.dispose();
             playRemindSound("windows_xp_notify.wav");
             loadPanel();
         });
@@ -678,6 +680,8 @@ public class PasswordManagerApp extends JFrame {
         JButton b = new JButton("Save");
         b.setBounds(SCREEN_WIDTH / 2, 170, BUTTON_WIDTH, BUTTON_HEIGHT);
         b.addActionListener(e -> {
+            mainmenu.setVisible(false);
+            mainmenu.dispose();
             playRemindSound("windows_xp_notify.wav");
             savePanel();
         });
@@ -701,9 +705,9 @@ public class PasswordManagerApp extends JFrame {
         frame.add(c);
         c.setBounds(300, 300, 80, 30);
         c.addActionListener(e -> {
-            goToMainMenu();
             frame.setVisible(false);
             frame.dispose();
+            goToMainMenu();
         });
     }
 
@@ -713,9 +717,9 @@ public class PasswordManagerApp extends JFrame {
         JButton b = new JButton("Clear");
         b.setBounds(SCREEN_WIDTH / 2, 200, BUTTON_WIDTH, BUTTON_HEIGHT);
         b.addActionListener(e -> {
-            clickClear();
             mainmenu.setVisible(false);
             mainmenu.dispose();
+            clickClear();
         });
         mainmenu.add(b);
     }
@@ -881,7 +885,7 @@ public class PasswordManagerApp extends JFrame {
     }
 
 
-    // EFFECTS: construct a user manual
+    // EFFECTS: construct a user manual to provide instructions
     private void afterClickUserManual() {
         JButton b = new JButton("User Manual");
         b.setBounds(20, 150, 180, 60);
@@ -891,7 +895,6 @@ public class PasswordManagerApp extends JFrame {
             setFrame2();
             frame2.setTitle("Manual");
             addManualPanels();
-
         });
         mainmenu.add(b);
     }
