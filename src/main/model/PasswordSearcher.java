@@ -12,7 +12,6 @@ public class PasswordSearcher extends UserList {
     }
 
 
-    // REQUIRES:the user list has no duplicate users
     // EFFECTS:use either password or user name to search users, return a list
     // of possible outcomes in ToLine form
     public LinkedList<String> searchUser(String username, String password) {
@@ -25,7 +24,6 @@ public class PasswordSearcher extends UserList {
         return userinfo;
     }
 
-    //REQUIRES:the user list has no duplicate users
     //EFFECT: get the whole list of your password and username
     // (if you forget both of them and cannot use search function)
     public LinkedList<String> getWholeUserList() {

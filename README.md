@@ -34,3 +34,20 @@ With the password manager, I believe the application would solve these potential
 - As a user, I want to save my password list before quit app.
 - As a user, I want to load my password list when app starts.
 
+## Phase 4: Task 2
+- Choose Option 1: design a class that is robust
+- In userList class, insertUser need to make sure no duplicated users in userList, there need to be a require clause
+originally.
+- Because we need to avoid duplicated users in list, so the insertUser method 
+could throw exception to prevent same user all to the list.
+
+## Phase 4: Task 3
+- There could be the refactoring on the PasswordManagerApp since some panel and frame have
+same size and same position, which means we only need to change their text and title.
+- Therefore, I could write a method that create a format of panel and frame. 
+If I need different panels, I just need to use setText for the panel.
+- Also, in passwordManagerApp, each function can be individual class to perform refactoring, 
+like adding a user can be an individual class.
+
+
+

@@ -1,5 +1,6 @@
 package persistence;
 
+import model.DuplicatedUserException;
 import model.PasswordEditor;
 import model.User;
 import model.UserList;
@@ -12,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads userList from JSON data stored in file
 // Citation/Reference: format of JsonReader in WorkShopApp, some methods used from JsonReader
 public class PasswordReader {
 
@@ -65,6 +66,10 @@ public class PasswordReader {
         String password = String.valueOf(jsonObject.getString("password"));
         String username = String.valueOf(jsonObject.getString("username"));
         User user = new User(username,password);
-        userList.insertUser(user);
+        try {
+            userList.insertUser(user);
+        } catch (DuplicatedUserException e) {
+            System.out.println("User has already in list");
+        }
     }
 }

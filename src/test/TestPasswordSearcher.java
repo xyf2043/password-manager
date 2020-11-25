@@ -1,3 +1,4 @@
+import model.DuplicatedUserException;
 import model.PasswordSearcher;
 import model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,7 +36,11 @@ class TestPasswordSearcher {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList.insertUser(user);
+            try {
+                userList.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                System.out.println("User has already in list");
+            }
         }
 
         assertEquals(10, userList.countUser());
@@ -50,7 +55,11 @@ class TestPasswordSearcher {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList.insertUser(user);
+            try {
+                userList.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                System.out.println("User has already in list");
+            }
         }
 
         assertEquals(2, userList.searchUser("1", "1").size());
@@ -70,7 +79,11 @@ class TestPasswordSearcher {
             String password = Integer.toString(i);
             String username = Integer.toString(i);
             User user = new User(username, password);
-            userList.insertUser(user);
+            try {
+                userList.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                System.out.println("User has already in list");
+            }
         }
         userList2 = userList.getWholeUserList();
         assertEquals(3, userList.countUser());

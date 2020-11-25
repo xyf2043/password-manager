@@ -17,8 +17,11 @@ public class UserList {
     }
 
     //MODIFIES: this
-    //EFFECTS: Insert non-duplicated users with their password and user name to the list
-    public void insertUser(User users) {
+    //EFFECTS: Insert user with their password and user name to the list
+    public void insertUser(User users) throws DuplicatedUserException {
+        if (userList.contains(users)) {
+            throw new DuplicatedUserException();
+        }
         userList.add(users);
     }
 

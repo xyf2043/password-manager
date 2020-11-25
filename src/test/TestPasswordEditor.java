@@ -1,3 +1,4 @@
+import model.DuplicatedUserException;
 import model.PasswordEditor;
 import model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +26,11 @@ public class TestPasswordEditor {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList.insertUser(user);
+            try {
+                userList.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                System.out.println("User has already in list");
+            }
         }
         userList.editPassword("1","0","2");
         User user = new User("2","0");
@@ -38,7 +43,11 @@ public class TestPasswordEditor {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList.insertUser(user);
+            try {
+                userList.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                System.out.println("User has already in list");
+            }
         }
         userList.editUsername("3","4","2");
         User user = new User("4","2");
@@ -51,7 +60,11 @@ public class TestPasswordEditor {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList.insertUser(user);
+            try {
+                userList.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                System.out.println("User has already in list");
+            }
         }
         userList.editUser("3","4","2","10");
         User user = new User("4","10");
@@ -64,7 +77,11 @@ public class TestPasswordEditor {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList.insertUser(user);
+            try {
+                userList.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                System.out.println("User has already in list");
+            }
         }
         User user = new User("2","1");
         userList.deleteUser("2","1");

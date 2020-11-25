@@ -1,3 +1,4 @@
+import model.DuplicatedUserException;
 import model.User;
 import model.UserList;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,11 @@ public class TestPasswordWriter extends JsonTest {
     void runBefore() {
             User user = new User("678", "999");
             UserList userList = new UserList();
+        try {
             userList.insertUser(user);
+        } catch (DuplicatedUserException e) {
+            System.out.println("User has already in list");
+        }
     }
 
     @Test
@@ -53,8 +58,12 @@ public class TestPasswordWriter extends JsonTest {
             User user = new User("678", "999");
             User user2 = new User("6788", "9995");
             UserList userList = new UserList();
-            userList.insertUser(user);
-            userList.insertUser(user2);
+            try {
+                userList.insertUser(user);
+                userList.insertUser(user2);
+            } catch (DuplicatedUserException e) {
+                System.out.println("User has already in list");
+            }
             PasswordWriter writer = new PasswordWriter("./data/testWriterGeneralUserList.json");
             writer.open();
             writer.write(userList);

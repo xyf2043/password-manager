@@ -1,3 +1,4 @@
+import model.DuplicatedUserException;
 import model.User;
 import model.UserList;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,7 +36,11 @@ public class TestUserList {
     @Test
     public void testIsNotEmpty(){
         User user = new User("1", "2");
-        userList1.insertUser(user);
+        try {
+            userList1.insertUser(user);
+        } catch (DuplicatedUserException e) {
+            fail();
+        }
         assertFalse(userList1.isEmpty());
     }
 
@@ -43,9 +48,12 @@ public class TestUserList {
     public void testCountUser(){
         assertEquals(0, userList1.countUser());
         User user = new User("1", "2");
-        userList2.insertUser(user);
-        userList2.insertUser(user);
-        assertEquals(2, userList2.countUser());
+        try {
+            userList2.insertUser(user);
+        } catch (DuplicatedUserException e) {
+            fail();
+        }
+        assertEquals(1, userList2.countUser());
     }
 
     @Test
@@ -54,36 +62,67 @@ public class TestUserList {
         assertEquals(null, userList1.returnUser(0));
         User user = new User("1", "2");
         User user1 = new User("1", "2");
-        userList2.insertUser(user);
+        try {
+            userList2.insertUser(user);
+        } catch (DuplicatedUserException e) {
+            fail();
+        }
         assertTrue(Objects.equals(user, userList2.returnUser(0)));
-        assertFalse(Objects.equals(user1, userList2.returnUser(0)));
+        assertTrue(Objects.equals(user1, userList2.returnUser(0)));
     }
 
 
     @Test
     public void testInsertOneUser() {
         User user = new User("1", "2");
-        userList1.insertUser(user);
+        try {
+            userList1.insertUser(user);
+        } catch (DuplicatedUserException e) {
+            fail();
+        }
         assertEquals(1, userList1.countUser());
     }
 
     @Test
-    public void testInsertMultipleUser() {
+    public void InsertDuplicateUser(){
+        User user = new User("1", "2");
+        try {
+            userList1.insertUser(user);
+            userList1.insertUser(user);
+            fail();
+        } catch (DuplicatedUserException e) {
+
+        }
+        assertEquals(1, userList1.countUser());
+
+    }
+
+    @Test
+    public void testInsertMultipleDifferentUser() {
         for (int i = 0; i < 10; i++) {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList1.insertUser(user);
+            try {
+                userList1.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                fail();
+            }
         }
         assertEquals(10, userList1.countUser());
         assertEquals("9", userList1.returnUser(9).getPassword());
         assertEquals("10", userList1.returnUser(9).getUsername());
     }
 
+
     @Test
     public void testContainNoUser() {
         User user = new User("1", "2");
-        userList1.insertUser(user);
+        try {
+            userList1.insertUser(user);
+        } catch (DuplicatedUserException e) {
+            fail();
+        }
         User user2 = new User("10", "20");
 
         assertFalse(userList1.containUser(user2));
@@ -95,7 +134,11 @@ public class TestUserList {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList1.insertUser(user);
+            try {
+                userList1.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                fail();
+            }
         }
         assertEquals(10, userList1.countUser());
 
@@ -113,7 +156,11 @@ public class TestUserList {
             String password = Integer.toString(i);
             String username = Integer.toString(i + 1);
             User user = new User(username, password);
-            userList1.insertUser(user);
+            try {
+                userList1.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                fail();
+            }
         }
         userList1.clearUserList();
         assertEquals(0, userList1.countUser());

@@ -1,5 +1,6 @@
 package ui;
 
+import model.DuplicatedUserException;
 import model.PasswordEditor;
 import model.User;
 import persistence.PasswordReader;
@@ -271,17 +272,18 @@ public class PasswordManagerApp extends JFrame {
             username = tf.getText();
             password = tf2.getText();
             User user = new User(username, password);
-            if (userList.containUser(user)) {
-                playRemindSound("windows_10_notify.wav");
-                remindDuplicateUser();
-            } else if (password.length() > MAX_LENGTH || username.length() > MAX_LENGTH) {
+            if (password.length() > MAX_LENGTH || username.length() > MAX_LENGTH) {
                 playRemindSound("windows_10_notify.wav");
                 remindExceedLength();
             } else {
-                playRemindSound("windows_xp.wav");
-                userList.insertUser(user);
-                saveUserList();
-                remindSuccessPanel();
+                try {
+                    userList.insertUser(user);
+                    playRemindSound("windows_xp.wav");
+                    saveUserList();
+                    remindSuccessPanel();
+                } catch (DuplicatedUserException e1) {
+                    remindDuplicateUser();
+                }
             }
             frame2.setVisible(false);
             frame2.dispose();
@@ -314,6 +316,7 @@ public class PasswordManagerApp extends JFrame {
     // MODIFIES: this
     // EFFECTS: remind user the current user is duplicated
     private void remindDuplicateUser() {
+        playRemindSound("windows_10_notify.wav");
         JFrame frame = new JFrame("Retry!");
         frame.setSize(400, 400);
         frame.setLayout(null);
