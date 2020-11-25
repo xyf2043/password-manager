@@ -14,8 +14,7 @@ public class PasswordEditor extends PasswordSearcher {
     }
 
 
-    // REQUIRES: the userList has no duplicated users
-    // && the oldPassword/oldUsername exist in the userList
+    // REQUIRES: the oldPassword/oldUsername exist in the userList
     // MODIFIES: this
     // EFFECTS: substitute old password in the user list
     public void editPassword(String oldPassword, String newPassword, String username) {
@@ -29,8 +28,7 @@ public class PasswordEditor extends PasswordSearcher {
         }
     }
 
-    // REQUIRES: the userList has no duplicated users
-    // && the oldPassword/oldUsername exist in the userList
+    // REQUIRES: the oldPassword/oldUsername exist in the userList
     // MODIFIES: this
     // EFFECTS: substitute old username in the user list
     public void editUsername(String oldUsername, String newUsername, String password) {
@@ -44,8 +42,7 @@ public class PasswordEditor extends PasswordSearcher {
         }
     }
 
-    // REQUIRES: the userList has no duplicated users
-    // && the oldPassword/oldUsername exist in the userList
+    // REQUIRES: the oldPassword/oldUsername exist in the userList
     // MODIFIES: this
     // EFFECTS: substitute both old username and old password in the user list
     public void editUser(String oldUsername, String newUsername, String oldPassword, String newPassword) {
@@ -59,8 +56,7 @@ public class PasswordEditor extends PasswordSearcher {
         }
     }
 
-    // REQUIRES: the userList has no duplicated users
-    // && the oldPassword/oldUsername exist in the userList
+    // REQUIRES: the oldPassword/oldUsername exist in the userList
     // MODIFIES: this
     // EFFECTS: by oldUsername and oldPassword, delete particular user in the user list
     public void deleteUser(String oldUsername, String oldPassword) {

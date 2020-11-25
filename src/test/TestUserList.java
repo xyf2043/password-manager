@@ -114,6 +114,31 @@ public class TestUserList {
         assertEquals("10", userList1.returnUser(9).getUsername());
     }
 
+    @Test
+    public void testInsertSameUserAddToList(){
+        for (int i = 0; i < 10; i++) {
+            String password = Integer.toString(i);
+            String username = Integer.toString(i + 1);
+            User user = new User(username, password);
+            try {
+                userList1.insertUser(user);
+            } catch (DuplicatedUserException e) {
+                fail();
+            }
+        }
+        User user = new User("2","1");
+        try {
+            userList1.insertUser(user);
+            fail();
+        } catch (DuplicatedUserException e) {
+
+        }
+        assertEquals(10, userList1.countUser());
+        assertEquals("8", userList1.returnUser(8).getPassword());
+        assertEquals("9", userList1.returnUser(8).getUsername());
+
+    }
+
 
     @Test
     public void testContainNoUser() {

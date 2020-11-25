@@ -18,6 +18,8 @@ public class UserList {
 
     //MODIFIES: this
     //EFFECTS: Insert user with their password and user name to the list
+    // if the userList already contains the user, throw DuplicateUserException
+    // otherwise add the user to userList
     public void insertUser(User users) throws DuplicatedUserException {
         if (userList.contains(users)) {
             throw new DuplicatedUserException();
