@@ -36,18 +36,19 @@ With the password manager, I believe the application would solve these potential
 
 ## Phase 4: Task 2
 - Choose Option 1: design a class that is robust.
-- In userList class, insertUser method need to make sure no duplicated users in userList, 
+- In userList class, there is insertUser method need to make sure no duplicated users in userList, 
 there need to be a require clause originally.
 - Because we need to avoid duplicated users in list, so the insertUser method 
 could throw exception to prevent same user added to the list.
 
 ## Phase 4: Task 3
 - There could be the refactoring on the PasswordManagerApp since some panel and frame have
-same size and same position, which means we only need to change their text and title.
+same size and same position, which means I only need to change their text and title.
 - Therefore, I could write a method that create a format of panel and frame. 
-If I need different panels, I just need to use setText for the panel.
+If I need different panels, I just need to use setText methods for panels.
 - Also, in PasswordEditor, to perform refactoring, 
-I can generate 'override equals' to identify whether the current user is same as the given user's password and username
+I can generate 'override equals' to identify whether 
+the current user is same as the given user's password and username
 
 
 

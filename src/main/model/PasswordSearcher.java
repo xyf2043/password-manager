@@ -12,7 +12,7 @@ public class PasswordSearcher extends UserList {
     }
 
 
-    // EFFECTS:use either password or user name to search users, return a list
+    // EFFECTS: use either password or user name to search users, return a list
     // of possible outcomes in ToLine form
     public LinkedList<String> searchUser(String username, String password) {
         LinkedList userinfo = new LinkedList<>();
