@@ -1,6 +1,8 @@
 
 # Password Manager
 
+This is my UBC CPSC210 project that comes from my previous github repo in school github account.
+
 ## Overview about the project
 
 This application, *password manager*, aims to help record password (with its username) on 
