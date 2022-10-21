@@ -2,7 +2,7 @@
 # Password Manager
 
 This is my UBC CPSC210 project that comes from my school github account in CPSC210 github Enterprise. NO 
-COPY or CLONE is allowed since it violates UBC academic misconduct policy.
+COPY or CLONE is allowed (if you intend to copy and use the code as your own) since it violates UBC academic misconduct policy.
 
 ## Overview about the project
 
