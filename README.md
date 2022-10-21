@@ -1,6 +1,9 @@
 
 # Password Manager
 
+This is my UBC CPSC210 project that comes from my school github account in CPSC210 github Enterprise. NO 
+COPY or CLONE is allowed (if you intend to copy and use the code as your own) since it violates UBC academic misconduct policy.
+
 ## Overview about the project
 
 This application, *password manager*, aims to help record password (with its username) on 
